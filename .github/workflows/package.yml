@@ -1,16 +1,37 @@
-name: create extension
+name: Package VS Code Extension
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
+  package:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Package VS Code extension
-      uses: nhedger/package-vscode-extension@v1
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
       with:
-        extensionPath: ../
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Install vsce
+      run: npm install -g vsce
+
+    - name: Build Extension
+      run: npm run build
+
+    - name: Package Extension
+      run: vsce package
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: extension
+        path: "*.vsix"
