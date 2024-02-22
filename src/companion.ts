@@ -12,6 +12,7 @@ import {
     useShortCodeForcesName,
     getMenuChoices,
     getDefaultLanguageTemplateFileLocation,
+    doMergeCppFiles,
 } from './preferences';
 import { getProblemName } from './submit';
 import { spawn } from 'child_process';
@@ -19,6 +20,7 @@ import { getJudgeViewProvider } from './extension';
 import { words_in_text } from './utilsPure';
 import telmetry from './telmetry';
 import os from 'os';
+import { getOutputFile, mergeFiles } from './merger';
 
 const emptyResponse: CphEmptyResponse = { empty: true };
 let savedResponse: CphEmptyResponse | CphSubmitResponse = emptyResponse;
@@ -77,7 +79,11 @@ export const submitKattisProblem = (problem: Problem) => {
 
 /** Stores a response to be submitted to CF page soon. */
 export const storeSubmitProblem = (problem: Problem) => {
-    const srcPath = problem.srcPath;
+    let srcPath = problem.srcPath;
+    if (doMergeCppFiles()) {
+        mergeFiles(problem.srcPath);
+        srcPath = getOutputFile(srcPath)
+    }  
     const problemName = getProblemName(problem.url);
     const sourceCode = readFileSync(srcPath).toString();
     const languageId = getLanguageId(problem.srcPath);

@@ -164,3 +164,7 @@ export const getLanguageId = (srcPath: string): number => {
     console.error("Couldn't find id for compiler " + compiler);
     return -1;
 };
+
+export const doMergeCppFiles = (): boolean => {
+    return getPreference('language.cpp.MergeFiles');
+}

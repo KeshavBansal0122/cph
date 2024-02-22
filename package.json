@@ -130,6 +130,12 @@
                     "default": "g++",
                     "description": "Command used to compile .cpp files. Example 'g++', 'g++-10', 'clang++', etc."
                 },
+                "cph.language.cpp.MergeFiles": {
+                    "title": "Merge files in #include from the same directory ",
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If enabled, a new file will be create with -merged appended to the filename. This file would be the one uploaded to codeforces"
+                },
                 "cph.language.python.Args": {
                     "title": "Compilation flags for Python",
                     "type": "string",

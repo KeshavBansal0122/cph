@@ -18,6 +18,7 @@ export type prefSection =
     | 'language.cpp.Args'
     | 'language.cpp.SubmissionCompiler'
     | 'language.cpp.Command'
+    | 'language.cpp.MergeFiles'
     | 'language.go.Args'
     | 'language.go.SubmissionCompiler'
     | 'language.go.Command'
