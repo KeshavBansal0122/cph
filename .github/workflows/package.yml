@@ -36,4 +36,4 @@ jobs:
     - name: Release extension
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "./extension.vsix"
+        artifacts: "*.vsix"
