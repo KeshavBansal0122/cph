@@ -12,3 +12,5 @@ jobs:
     steps:
     - name: Package VS Code extension
       uses: nhedger/package-vscode-extension@v1
+      with:
+        extensionPath: .
