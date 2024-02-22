@@ -33,14 +33,18 @@ jobs:
         name: extension
         path: "*.vsix"
 
+    - name: Get Tag Name
+      id: tag_name
+      run: echo ::set-output name=TAG_NAME::$(echo ${GITHUB_REF#refs/tags/})
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ steps.tag_name.outputs.TAG_NAME }}
+        release_name: Release ${{ steps.tag_name.outputs.TAG_NAME }}
         draft: false
         prerelease: false
 
