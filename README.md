@@ -44,6 +44,7 @@ enter testcases.
 -   [Kattis auto-submit](docs/user-guide.md) integration.
 -   Works locally for your own problems.
 -   Support for several languages.
+-   Fork feature: Automatically combine files #include "" while submitting on codeforces. Disabled by default
 
 ## Supported Languages
 
