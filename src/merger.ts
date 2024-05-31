@@ -58,8 +58,6 @@ function processFile(file: string, outputFile: string, include: boolean): void {
                 appendFileSync(outputFile, line + "\n");
             }
         }
-    } else {
-        appendFileSync(outputFile, "File already processed once\n");
     }
 
     if (extName === ".cpp") {
